@@ -48,9 +48,7 @@ namespace ASPNETCoreWebApplicationMVCTemplate.Controllers
                 Gender = "Male"
             };
 
-            ViewBag.Student = student;
-
-            return View();
+            return View(student);
         }
     }
 }

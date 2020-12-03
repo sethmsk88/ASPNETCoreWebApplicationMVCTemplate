@@ -1,6 +1,5 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model ASPNETCoreWebApplicationMVCTemplate.Models.Student
+
 @{
     Layout = null;
 }
@@ -12,23 +11,20 @@
 </head>
 <body>
     <h1>@ViewBag.Header</h1>
-    @{
-        var student = ViewBag.Student;
-    }
     <div>
-        StudentId : @student.StudentId
+        StudentId : @Model.StudentId
     </div>
     <div>
-        Name : @student.Name
+        Name : @Model.Name
     </div>
     <div>
-        Branch : @student.Branch
+        Branch : @Model.Branch
     </div>
     <div>
-        Section : @student.Section
+        Section : @Model.Section
     </div>
     <div>
-        Gender : @student.Gender
+        Gender : @Model.Gender
     </div>
 </body>
 </html>
