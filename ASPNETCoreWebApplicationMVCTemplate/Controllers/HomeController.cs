@@ -33,5 +33,23 @@ namespace ASPNETCoreWebApplicationMVCTemplate.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        public ViewResult Details()
+        {
+            //String string Data
+            ViewData["Title"] = "Student Details Page";
+            ViewData["Header"] = "Student Details";
+            Student student = new Student()
+            {
+                StudentId = "STD101",
+                Name = "James",
+                Branch = "CSE",
+                Section = "A",
+                Gender = "Male"
+            };
+            //storing Student Data
+            ViewData["Student"] = student;
+            return View();
+        }
     }
 }
