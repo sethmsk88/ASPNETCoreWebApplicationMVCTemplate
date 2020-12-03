@@ -36,19 +36,20 @@ namespace ASPNETCoreWebApplicationMVCTemplate.Controllers
 
         public ViewResult Details()
         {
-            //String string Data
-            ViewData["Title"] = "Student Details Page";
-            ViewData["Header"] = "Student Details";
+            ViewBag.Title = "Student Details Page";
+            ViewBag.Header = "Student Details";
+            
             Student student = new Student()
             {
-                StudentId = "STD101",
+                StudentId = 101,
                 Name = "James",
                 Branch = "CSE",
                 Section = "A",
                 Gender = "Male"
             };
-            //storing Student Data
-            ViewData["Student"] = student;
+
+            ViewBag.Student = student;
+
             return View();
         }
     }

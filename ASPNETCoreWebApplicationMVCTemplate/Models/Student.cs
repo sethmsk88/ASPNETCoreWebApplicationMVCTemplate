@@ -7,7 +7,7 @@ namespace ASPNETCoreWebApplicationMVCTemplate.Models
 {
     public class Student
     {
-        public string StudentId { get; set; }
+        public int StudentId { get; set; }
         public string Name { get; set; }
         public string Branch { get; set; }
         public string Section { get; set; }

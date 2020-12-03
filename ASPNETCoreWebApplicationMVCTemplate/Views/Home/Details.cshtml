@@ -8,14 +8,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <title>@ViewData["Title"]</title>
+    <title>@ViewBag.Title</title>
 </head>
 <body>
-    <h1>@ViewData["Header"]</h1>
+    <h1>@ViewBag.Header</h1>
     @{
-        var student = ViewData["Student"]
-            as ASPNETCoreWebApplicationMVCTemplate.Models.Student;
+        var student = ViewBag.Student;
     }
     <div>
         StudentId : @student.StudentId
