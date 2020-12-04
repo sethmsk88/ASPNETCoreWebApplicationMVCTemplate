@@ -15,21 +15,27 @@ namespace ASPNETCoreWebApplicationMVCTemplate.Controllers
         [Route("")]
         [Route("/")]
         [Route("[action]")]
-        public string Index()
+        public ViewResult Index()
         {
-            return "Index() Action Method of HomeController";
+            return View();
+        }
+
+        [Route("[action]")]
+        public ViewResult Privacy()
+        {
+            return View();
+        }
+
+        [Route("[action]")]
+        public ViewResult Contact()
+        {
+            return View();
         }
 
         [Route("/[action]")]   // Ignore the route template (i.e. Home) placed at the controller level
         public string About()
         {
             return "About() Action Method of HomeController";
-        }
-
-        [Route("[action]")]
-        public string Contact()
-        {
-            return "Contact() Action Method of HomeController";
         }
     }
 }
