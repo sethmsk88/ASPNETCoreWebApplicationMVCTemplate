@@ -40,12 +40,7 @@ namespace ASPNETCoreWebApplicationMVCTemplate
 
             //app.UseMvcWithDefaultRoute(); // {controller}/{action}/{id}
             // or
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller=Home}/{action=Index}/{id:int?}");
-            });
+            app.UseMvc();
 
 
             /*app.UseRouting();
