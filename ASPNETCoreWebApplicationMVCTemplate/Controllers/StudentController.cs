@@ -8,17 +8,17 @@ using System.Threading.Tasks;
 
 namespace ASPNETCoreWebApplicationMVCTemplate.Controllers
 {
-    [Route("Student")]
+    [Route("[controller]")]
     public class StudentController : Controller
     {
         [Route("")]
-        [Route("Index")]
+        [Route("[action]")]
         public string Index()
         {
             return "Student/Index";
         }
 
-        [Route("Details/{id?}")]
+        [Route("[action]/{id?}")]
         public ViewResult Details(int id)
         {
             //Student Basic Details
