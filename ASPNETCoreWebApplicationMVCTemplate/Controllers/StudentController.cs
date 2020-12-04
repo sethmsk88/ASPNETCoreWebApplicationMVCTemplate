@@ -10,7 +10,12 @@ namespace ASPNETCoreWebApplicationMVCTemplate.Controllers
 {
     public class StudentController : Controller
     {
-        public ViewResult Details()
+        public string Index()
+        {
+            return "Student/Index";
+        }
+
+        public ViewResult Details(int id)
         {
             //Student Basic Details
             Student student = new Student()
@@ -41,5 +46,6 @@ namespace ASPNETCoreWebApplicationMVCTemplate.Controllers
             //Pass the studentDetailsViewModel to the view
             return View(studentDetailsViewModel);
         }
+
     }
 }
