@@ -1,11 +1,49 @@
-﻿@{
-    ViewBag.Title = "Home Page";
+﻿@model List<Student>
+@{
+    Layout = null;
 }
 
 @section Scripts{
     <script src="~/js/CustomJavascript.js" asp-append-version="true"></script>
 }
 
-<div class="text-center">
-    <p>This is the Index page</p>
-</div>
+<html>
+<head>
+    <title>Index</title>
+</head>
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Branch</th>
+                <th>Section</th>
+                <th>Gender</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var student in Model)
+            {
+                <tr>
+                    <td>
+                        @student.StudentId
+                    </td>
+                    <td>
+                        @student.Name
+                    </td>
+                    <td>
+                        @student.Branch
+                    </td>
+                    <td>
+                        @student.Section
+                    </td>
+                    <td>
+                        @student.Gender
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</body>
+</html>
