@@ -12,6 +12,8 @@ namespace ASPNETCoreWebApplicationMVCTemplate.Controllers
     [Route("[controller]")]
     public class HomeController : Controller
     {
+        private List<Student> listStudents = new List<Student>();
+
         [Route("")]
         [Route("/")]
         [Route("[action]")]
@@ -19,11 +21,9 @@ namespace ASPNETCoreWebApplicationMVCTemplate.Controllers
         {
             List<Student> listStudents = new List<Student>()
             {
-               new Student() { StudentId = 101, Name = "James", Branch = "CSE", Section = "A", Gender = "Male" },
-               new Student() { StudentId = 102, Name = "Smith", Branch = "ETC", Section = "B", Gender = "Male" },
-               new Student() { StudentId = 103, Name = "David", Branch = "CSE", Section = "A", Gender = "Male" },
-               new Student() { StudentId = 104, Name = "Sara", Branch = "CSE", Section = "A", Gender = "Female" },
-               new Student() { StudentId = 105, Name = "Pam", Branch = "ETC", Section = "B", Gender = "Female" }
+               new Student() { StudentId = 101, Name = "James", Branch = Branch.CSE, Gender = Gender.Male, Address = "A1-2018", Email = "James@g.com" },
+               new Student() { StudentId = 102, Name = "Priyanka", Branch = Branch.ETC, Gender = Gender.Female, Address = "A1-2019", Email = "Priyanka@g.com" },
+               new Student() { StudentId = 103, Name = "David", Branch = Branch.CSE, Gender = Gender.Male, Address = "A1-2020", Email = "David@g.com" }
             };
             return View(listStudents);
         }
@@ -31,7 +31,7 @@ namespace ASPNETCoreWebApplicationMVCTemplate.Controllers
         [Route("[action]/{id?}")]
         public ViewResult Details(int Id)
         {
-            var studentDetails = new Student() { StudentId = Id, Name = "James", Branch = "CSE", Section = "A", Gender = "Male" };
+            var studentDetails = listStudents.FirstOrDefault(std => std.StudentId == Id);
             return View(studentDetails);
         }
 

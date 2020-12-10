@@ -26,9 +26,9 @@ namespace ASPNETCoreWebApplicationMVCTemplate.Controllers
             {
                 StudentId = 101,
                 Name = "Dillip",
-                Branch = "CSE",
+                Branch = Branch.CSE,
                 Section = "A",
-                Gender = "Male"
+                Gender = Gender.Male
             };
             //Student Address
             Address address = new Address()
