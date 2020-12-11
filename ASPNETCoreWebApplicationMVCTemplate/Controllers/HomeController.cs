@@ -52,5 +52,17 @@ namespace ASPNETCoreWebApplicationMVCTemplate.Controllers
         {
             return "About() Action Method of HomeController";
         }
+
+        /*[HttpGet]*/   /* Use HttpGet if you want to load the Create view without navigating to Home/Create. You woul have the URL Home/ */
+        [Route("[action]")]
+        public ViewResult Create()
+        {
+            Student student = new Student
+            {
+                AllGenders = Enum.GetValues(typeof(Gender)).Cast<Gender>().ToList()
+            };
+
+            return View(student);
+        }
     }
 }
