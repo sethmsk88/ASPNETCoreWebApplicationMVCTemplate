@@ -1,4 +1,5 @@
 ﻿using ASPNETCoreWebApplicationMVCTemplate.Models;
+using ASPNETCoreWebApplicationMVCTemplate.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -13,7 +14,7 @@ namespace ASPNETCoreWebApplicationMVCTemplate.Controllers
     public class HomeController : Controller
     {
         private List<Student> listStudents = new List<Student>();
-        private IStudentRepository _studentRepository;
+        private readonly IStudentRepository _studentRepository;
 
         // We are using the constructor to inject the service IEmployeeRepository
         public HomeController(IStudentRepository studentRepository)
@@ -39,9 +40,20 @@ namespace ASPNETCoreWebApplicationMVCTemplate.Controllers
 
         [Route("[action]/{id?}")]
         public ViewResult Details(int Id)
-        {
+        {            
             var studentDetails = listStudents.FirstOrDefault(std => std.StudentId == Id);
             return View(studentDetails);
+        }
+
+        [Route("[action]")]
+        public ViewResult DetailsTest()
+        {
+            HomeDetailsViewModel homeDetailsViewModel = new HomeDetailsViewModel()
+            {
+                Student = _studentRepository.GetStudent(101),
+                PageTitle = "Student Details"
+            };
+            return View(homeDetailsViewModel);
         }
 
         [Route("[action]")]
