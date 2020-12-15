@@ -17,9 +17,13 @@
             <img class="card-img-top" src="~/images/student.png" />
             <div class="card-footer text-center">
                 <div class="card-footer text-center">
-                    <a asp-controller="home" asp-action="details"
+                    
+                    <!-- Create link using a TagHelper -->
+                    <a asp-controller="Home" asp-action="DetailsTest"
                        asp-route-id="@student.StudentId" class="btn btn-primary m-1">View</a>
-                    <a href="#" class="btn btn-primary m-1">Edit</a>
+                    
+                    <!-- Use URL.Action to create the link text so we can add bootstrap classes to the <a> tag -->
+                    <a href="@Url.Action("DetailsTest", "Home", new { id = student.StudentId })" class="btn btn-primary m-1">Edit</a>
                     <a href="#" class="btn btn-danger m-1">Delete</a>
                 </div>
             </div>
