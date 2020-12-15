@@ -25,9 +25,11 @@ namespace ASPNETCoreWebApplicationMVCTemplate.Controllers
         [Route("")]
         [Route("/")]
         [Route("[action]")]
-        public string Index()
+        public ViewResult Index()
         {
-            return _studentRepository.GetStudent(101).Name;
+            /*return _studentRepository.GetStudent(101).Name;*/
+            var model = _studentRepository.GetAllStudents();
+            return View(model);
             
             /*List<Student> listStudents = new List<Student>()
             {
@@ -45,12 +47,12 @@ namespace ASPNETCoreWebApplicationMVCTemplate.Controllers
             return View(studentDetails);
         }
 
-        [Route("[action]")]
-        public ViewResult DetailsTest()
+        [Route("[action]/{id?}")]
+        public ViewResult DetailsTest(int Id = 101)
         {
             HomeDetailsViewModel homeDetailsViewModel = new HomeDetailsViewModel()
             {
-                Student = _studentRepository.GetStudent(101),
+                Student = _studentRepository.GetStudent(Id),
                 PageTitle = "Student Details"
             };
             return View(homeDetailsViewModel);

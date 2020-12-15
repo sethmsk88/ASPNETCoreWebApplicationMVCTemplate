@@ -42,5 +42,10 @@ namespace ASPNETCoreWebApplicationMVCTemplate.Models
             return _studentList.FirstOrDefault(e => e.StudentId == Id);
             /*return null;*/
         }
+
+        public IEnumerable<Student> GetAllStudents()
+        {
+            return _studentList;
+        }
     }
 }
