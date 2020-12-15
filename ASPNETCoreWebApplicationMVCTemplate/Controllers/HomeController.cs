@@ -30,14 +30,6 @@ namespace ASPNETCoreWebApplicationMVCTemplate.Controllers
             /*return _studentRepository.GetStudent(101).Name;*/
             var model = _studentRepository.GetAllStudents();
             return View(model);
-            
-            /*List<Student> listStudents = new List<Student>()
-            {
-               new Student() { StudentId = 101, Name = "James", Branch = Branch.CSE, Gender = Gender.Male, Address = "A1-2018", Email = "James@g.com" },
-               new Student() { StudentId = 102, Name = "Priyanka", Branch = Branch.ETC, Gender = Gender.Female, Address = "A1-2019", Email = "Priyanka@g.com" },
-               new Student() { StudentId = 103, Name = "David", Branch = Branch.CSE, Gender = Gender.Male, Address = "A1-2020", Email = "David@g.com" }
-            };
-            return View(listStudents);*/
         }
 
         [Route("[action]/{id?}")]
@@ -76,16 +68,20 @@ namespace ASPNETCoreWebApplicationMVCTemplate.Controllers
             return "About() Action Method of HomeController";
         }
 
-        /*[HttpGet]*/   /* Use HttpGet if you want to load the Create view without navigating to Home/Create. You woul have the URL Home/ */
+        [HttpGet]
         [Route("[action]")]
-        public ViewResult Create(Student student)
+        public ViewResult Create()
         {
-            /*Student student = new Student
-            {
-                AllGenders = Enum.GetValues(typeof(Gender)).Cast<Gender>().ToList()
-            };*/
+            return View();
+        }
 
-            return View(student);
+        [HttpPost]
+        [Route("[action]")]
+        public RedirectToActionResult Create(Student student)
+        {
+            Student newStudent = _studentRepository.Add(student);
+
+            return RedirectToAction("DetailsTest", new { Id = newStudent.StudentId });
         }
     }
 }

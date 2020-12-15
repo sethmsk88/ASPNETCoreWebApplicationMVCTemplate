@@ -9,5 +9,6 @@ namespace ASPNETCoreWebApplicationMVCTemplate.Models
     {
         Student GetStudent(int Id);
         IEnumerable<Student> GetAllStudents();
+        Student Add(Student student);
     }
 }

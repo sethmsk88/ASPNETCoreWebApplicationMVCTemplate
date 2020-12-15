@@ -39,13 +39,22 @@ namespace ASPNETCoreWebApplicationMVCTemplate.Models
 
         public Student GetStudent(int Id)
         {
-            return _studentList.FirstOrDefault(e => e.StudentId == Id);
+            return _studentList.FirstOrDefault(obj => obj.StudentId == Id);
             /*return null;*/
         }
 
         public IEnumerable<Student> GetAllStudents()
         {
             return _studentList;
+        }
+
+        public Student Add(Student student)
+        {
+            // create a student id
+            student.StudentId = _studentList.Max(obj => obj.StudentId) + 1;
+
+            _studentList.Add(student);
+            return student;
         }
     }
 }
