@@ -77,11 +77,15 @@ namespace ASPNETCoreWebApplicationMVCTemplate.Controllers
 
         [HttpPost]
         [Route("[action]")]
-        public RedirectToActionResult Create(Student student)
+        public IActionResult Create(Student student)
         {
-            Student newStudent = _studentRepository.Add(student);
+            if (ModelState.IsValid)
+            {
+                Student newStudent = _studentRepository.Add(student);
+                return RedirectToAction("DetailsTest", new { Id = newStudent.StudentId });
+            }
 
-            return RedirectToAction("DetailsTest", new { Id = newStudent.StudentId });
+            return View();
         }
     }
 }
