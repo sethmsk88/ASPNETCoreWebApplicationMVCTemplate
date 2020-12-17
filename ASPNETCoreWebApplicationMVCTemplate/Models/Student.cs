@@ -15,7 +15,8 @@ namespace ASPNETCoreWebApplicationMVCTemplate.Models
         [Required]
         [RegularExpression(@"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9_.+-]+\.[a-zA-Z0-9-.]+$", ErrorMessage = "Invalid Email Format")]
         public string Email { get; set; }
-        public Branch Branch { get; set; }
+        [Required]
+        public Branch? Branch { get; set; } // Question mark makes Branch nullable
         public Gender Gender { get; set; }
         public string Section { get; set; }
         [Display(Name = "Home Address")]
