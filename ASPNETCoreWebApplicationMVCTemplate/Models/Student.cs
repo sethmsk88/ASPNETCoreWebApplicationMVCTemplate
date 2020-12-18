@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -21,6 +22,7 @@ namespace ASPNETCoreWebApplicationMVCTemplate.Models
         public string Section { get; set; }
         [Display(Name = "Home Address")]
         public string Address { get; set; }
+        [NotMapped]
         public IEnumerable<Gender> AllGenders { set; get; }
     }
 }

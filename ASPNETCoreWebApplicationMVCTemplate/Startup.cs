@@ -1,6 +1,7 @@
 using ASPNETCoreWebApplicationMVCTemplate.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -23,8 +24,10 @@ namespace ASPNETCoreWebApplicationMVCTemplate
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContextPool<AppDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("StudentDBConnection")));
             services.AddMvc(option => option.EnableEndpointRouting = false).AddXmlSerializerFormatters();
-            services.AddSingleton<IStudentRepository, MockStudentRepository>();
+            //services.AddSingleton<IStudentRepository, MockStudentRepository>();
+            services.AddScoped<IStudentRepository, SQLStudentRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

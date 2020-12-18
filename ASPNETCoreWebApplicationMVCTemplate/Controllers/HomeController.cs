@@ -82,7 +82,7 @@ namespace ASPNETCoreWebApplicationMVCTemplate.Controllers
             if (ModelState.IsValid)
             {
                 Student newStudent = _studentRepository.Add(student);
-                return RedirectToAction("DetailsTest", new { Id = newStudent.StudentId });
+                //return RedirectToAction("DetailsTest", new { Id = newStudent.StudentId });
             }
 
             return View();

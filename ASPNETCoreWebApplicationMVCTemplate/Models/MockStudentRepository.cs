@@ -51,9 +51,34 @@ namespace ASPNETCoreWebApplicationMVCTemplate.Models
         public Student Add(Student student)
         {
             // create a student id
-            student.StudentId = _studentList.Max(obj => obj.StudentId) + 1;
+            student.StudentId = _studentList.Max(s => s.StudentId) + 1;
 
             _studentList.Add(student);
+            return student;
+        }
+
+        public Student Update(Student studentChanges)
+        {
+            Student student = _studentList.FirstOrDefault(s => s.StudentId == studentChanges.StudentId);
+            if (student != null)
+            {
+                student.Name = studentChanges.Name;
+                student.Email = studentChanges.Email;
+                student.Branch = studentChanges.Branch;
+                student.Gender = studentChanges.Gender;
+                student.Section = studentChanges.Section;
+                student.Address = studentChanges.Address;
+            }
+            return student;
+        }
+
+        public Student Delete(int id)
+        {
+            Student student = _studentList.FirstOrDefault(s => s.StudentId == id);
+            if (student != null)
+            {
+                _studentList.Remove(student);
+            }
             return student;
         }
     }
