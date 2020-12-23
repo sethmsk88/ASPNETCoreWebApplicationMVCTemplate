@@ -3,14 +3,16 @@ using ASPNETCoreWebApplicationMVCTemplate.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ASPNETCoreWebApplicationMVCTemplate.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201222150235_SeedStudentsTable")]
+    partial class SeedStudentsTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -43,9 +45,6 @@ namespace ASPNETCoreWebApplicationMVCTemplate.Migrations
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
 
-                    b.Property<string>("PhotoPath")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Section")
                         .HasColumnType("nvarchar(max)");
 
@@ -58,17 +57,9 @@ namespace ASPNETCoreWebApplicationMVCTemplate.Migrations
                         {
                             StudentId = 1,
                             Branch = 1,
-                            Email = "lisa@yahoo.com",
+                            Email = "bart@yahoo.com",
                             Gender = 0,
-                            Name = "Lisa Simpson"
-                        },
-                        new
-                        {
-                            StudentId = 2,
-                            Branch = 1,
-                            Email = "homer@yahoo.com",
-                            Gender = 0,
-                            Name = "Homer Simpson"
+                            Name = "Bart Simpson"
                         });
                 });
 #pragma warning restore 612, 618

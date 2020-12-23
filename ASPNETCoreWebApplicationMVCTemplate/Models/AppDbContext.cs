@@ -15,5 +15,11 @@ namespace ASPNETCoreWebApplicationMVCTemplate.Models
         }
 
         public DbSet<Student> Students { get; set; }
+        
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Seed();
+        }
+        
     }
 }

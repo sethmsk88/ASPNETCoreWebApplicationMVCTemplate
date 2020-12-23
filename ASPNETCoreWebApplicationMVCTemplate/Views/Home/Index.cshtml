@@ -1,32 +1,36 @@
 ﻿@{
 }
 
-
 @* Load scripts that are specific to this view *@
 @section Scripts{
     <script src="~/js/HomeIndex.js" asp-append-version="true"></script>
 }
 
-<div class="card-deck">
-    @foreach (var student in Model)
-    {
-        <div class="card m-3">
-            <div class="card-header">
-                <h3>@student.Name</h3>
-            </div>
-            <img class="card-img-top" src="~/images/student.png" />
-            <div class="card-footer text-center">
+<div class="row">
+    <div class="card-deck">
+        @foreach (var student in Model)
+        {
+            var photoPath = "~/images/" + (student.PhotoPath ?? "student.png");
+
+            <div class="card m-3">
+                <div class="card-header">
+                    <h3>@student.Name</h3>
+                </div>
+                <img class="card-img-top image-thumbnail" src="@photoPath" asp-append-version="true" />
                 <div class="card-footer text-center">
-                    
-                    <!-- Create link using a TagHelper -->
-                    <a asp-controller="Home" asp-action="DetailsTest"
-                       asp-route-id="@student.StudentId" class="btn btn-primary m-1">View</a>
-                    
-                    <!-- Use URL.Action to create the link text so we can add bootstrap classes to the <a> tag -->
-                    <a href="@Url.Action("DetailsTest", "Home", new { id = student.StudentId })" class="btn btn-primary m-1">Edit</a>
-                    <a href="#" class="btn btn-danger m-1">Delete</a>
+                    <div class="card-footer text-center">
+
+                        <!-- Create link using a TagHelper -->
+                        <a asp-controller="Home" asp-action="DetailsTest"
+                           asp-route-id="@student.StudentId" class="btn btn-primary m-1">View</a>
+
+                        @*<a href="#" asp-action="Edit" asp-controller="Home" asp-route-id="@student.StudentId"
+                            class="btn btn-primary m-1">Edit</a>*@
+
+                        <a href="#" class="btn btn-danger m-1">Delete</a>
+                    </div>
                 </div>
             </div>
-        </div>
-    }
+        }
+    </div>
 </div>

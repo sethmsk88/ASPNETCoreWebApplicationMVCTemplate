@@ -1,15 +1,16 @@
-﻿using System;
+﻿using ASPNETCoreWebApplicationMVCTemplate.Models;
+using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ASPNETCoreWebApplicationMVCTemplate.Models
+namespace ASPNETCoreWebApplicationMVCTemplate.ViewModels
 {
-    public class Student
+    public class StudentCreateViewModel
     {
-        public int StudentId { get; set; }
         [Required]
         [MaxLength(20, ErrorMessage = "Name cannot exceed 20 characters")]
         public string Name { get; set; }
@@ -24,6 +25,6 @@ namespace ASPNETCoreWebApplicationMVCTemplate.Models
         public string Address { get; set; }
         [NotMapped]
         public IEnumerable<Gender> AllGenders { set; get; }
-        public string PhotoPath { get; set; }
+        public List<IFormFile> Photos { get; set; }
     }
 }

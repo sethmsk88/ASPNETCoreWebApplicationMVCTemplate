@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ASPNETCoreWebApplicationMVCTemplate.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20201218214652_InitialMigration")]
-    partial class InitialMigration
+    [Migration("20201222152514_AlterStudentsSeedData")]
+    partial class AlterStudentsSeedData
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -51,6 +51,24 @@ namespace ASPNETCoreWebApplicationMVCTemplate.Migrations
                     b.HasKey("StudentId");
 
                     b.ToTable("Students");
+
+                    b.HasData(
+                        new
+                        {
+                            StudentId = 1,
+                            Branch = 1,
+                            Email = "lisa@yahoo.com",
+                            Gender = 0,
+                            Name = "Lisa Simpson"
+                        },
+                        new
+                        {
+                            StudentId = 2,
+                            Branch = 1,
+                            Email = "homer@yahoo.com",
+                            Gender = 0,
+                            Name = "Homer Simpson"
+                        });
                 });
 #pragma warning restore 612, 618
         }
