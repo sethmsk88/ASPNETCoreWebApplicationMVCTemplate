@@ -87,18 +87,7 @@ namespace ASPNETCoreWebApplicationMVCTemplate.Controllers
         {
             if (ModelState.IsValid)
             {
-                string uniqueFileName = null;
-                if (model.Photos != null && model.Photos.Count > 0)
-                {
-                    foreach(IFormFile photo in model.Photos)
-                    {
-                        string uploadsDir = Path.Combine(webHostEnvironment.WebRootPath, "images");
-                        uniqueFileName = Guid.NewGuid().ToString() + "_" + photo.FileName;
-                        string filePath = Path.Combine(uploadsDir, uniqueFileName);
-
-                        photo.CopyTo(new FileStream(filePath, FileMode.Create));
-                    }
-                }
+                string uniqueFileName = ProcessUploadedFiles(model);
 
                 Student newStudent = new Student
                 {
@@ -114,6 +103,74 @@ namespace ASPNETCoreWebApplicationMVCTemplate.Controllers
             }
 
             return View();
+        }
+
+        [HttpGet]
+        [Route("[action]/{id?}")]
+        public ViewResult Edit(int id)
+        {
+            Student student = _studentRepository.GetStudent(id);
+            StudentEditViewModel studentEditViewModel = new StudentEditViewModel
+            {
+                StudentId = student.StudentId,
+                Name = student.Name,
+                Email = student.Email,
+                Branch = student.Branch,
+                Address = student.Address,
+                ExistingPhotoPath= student.PhotoPath
+            };
+            return View(studentEditViewModel);
+        }
+
+        [HttpPost]
+        [Route("[action]/{id?}")]
+        public IActionResult Edit(StudentEditViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                Student student = _studentRepository.GetStudent(model.StudentId);
+                student.Name = model.Name;
+                student.Email = model.Email;
+                student.Branch = model.Branch;
+                student.Address = model.Address;
+                
+                if (model.Photos != null && model.Photos.Count > 0)
+                {
+                    // If student already has a photo, delete it
+                    if (model.ExistingPhotoPath != null)
+                    {
+                        string filePathToDelete = Path.Combine(webHostEnvironment.WebRootPath, "images", model.ExistingPhotoPath);
+                        System.IO.File.Delete(filePathToDelete);
+                    }
+                    student.PhotoPath =  ProcessUploadedFiles(model);
+                }
+
+                _studentRepository.Update(student);
+                return RedirectToAction("Index");
+            }
+
+            return View();
+        }
+
+        private string ProcessUploadedFiles(StudentCreateViewModel model)
+        {
+            string uniqueFileName = null;
+            if (model.Photos != null && model.Photos.Count > 0)
+            {
+                foreach (IFormFile photo in model.Photos)
+                {
+                    string uploadsDir = Path.Combine(webHostEnvironment.WebRootPath, "images");
+                    uniqueFileName = Guid.NewGuid().ToString() + "_" + photo.FileName;
+                    string filePath = Path.Combine(uploadsDir, uniqueFileName);
+                    
+                    using (var fileStream = new FileStream(filePath, FileMode.Create))
+                    {
+                        photo.CopyTo(fileStream);
+                    }
+                }
+            }
+
+            return uniqueFileName;
         }
     }
 }
